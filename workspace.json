@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
+    "about-me": "apps/about-me",
+    "about-me-e2e": "apps/about-me-e2e",
     "react-app": "apps/react-app",
     "react-app-e2e": "apps/react-app-e2e"
   }
