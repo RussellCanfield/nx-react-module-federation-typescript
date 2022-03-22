@@ -1,0 +1,20 @@
+{
+  "files": [],
+  "compilerOptions": {
+    "disableSourceOfProjectReferenceRedirect": true
+  },
+  "references": [
+    {
+      "path": "./apps/about-me"
+    },
+    {
+      "path": "./apps/about-me-e2e"
+    },
+    {
+      "path": "./apps/react-app"
+    },
+    {
+      "path": "./apps/react-app-e2e"
+    }
+  ]
+}

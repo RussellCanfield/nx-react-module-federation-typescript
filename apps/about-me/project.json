@@ -6,21 +6,22 @@
     "build": {
       "executor": "@nrwl/web:webpack",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
+      "defaultConfiguration": "development",
       "options": {
         "compiler": "babel",
         "outputPath": "dist/apps/about-me",
         "index": "apps/about-me/src/index.html",
         "baseHref": "/",
-        "main": "apps/about-me/src/main.tsx",
+        "main": "apps/about-me/src/index.ts",
         "polyfills": "apps/about-me/src/polyfills.ts",
-        "tsConfig": "apps/about-me/tsconfig.app.json",
+        "tsConfig": "apps/about-me/tsconfig.json",
         "assets": ["apps/about-me/src/favicon.ico", "apps/about-me/src/assets"],
         "styles": ["apps/about-me/src/styles.css"],
         "scripts": [],
-        "webpackConfig": "@nrwl/react/plugins/webpack"
+        "webpackConfig": "apps/about-me/webpack.config.js"
       },
       "configurations": {
+        "development": {},
         "production": {
           "fileReplacements": [
             {
@@ -30,7 +31,7 @@
           ],
           "optimization": true,
           "outputHashing": "all",
-          "sourceMap": false,
+          "sourceMap": true,
           "namedChunks": false,
           "extractLicenses": true,
           "vendorChunk": false
@@ -38,16 +39,12 @@
       }
     },
     "serve": {
-      "executor": "@nrwl/web:dev-server",
+      "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "buildTarget": "about-me:build",
-        "hmr": true
-      },
-      "configurations": {
-        "production": {
-          "buildTarget": "about-me:build:production",
-          "hmr": false
-        }
+        "commands": [
+          "cd apps/about-me && npm run dev",
+          "cd apps/react-app && npm run dev"
+        ]
       }
     },
     "lint": {
@@ -66,5 +63,5 @@
       }
     }
   },
-  "tags": []
+  "tags": ["scope:shared"]
 }

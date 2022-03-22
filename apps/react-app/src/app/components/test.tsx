@@ -1,0 +1,1 @@
+export default TestComponent => <div>Test</div>

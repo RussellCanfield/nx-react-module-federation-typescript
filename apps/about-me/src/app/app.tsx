@@ -1,12 +1,17 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.css';
-import NxWelcome from './nx-welcome';
+import React, { Suspense } from 'react';
+//import styles from './app.module.css';
+import TestComponent from 'ReactApp/test';
+
+const Layout = React.lazy(() => import('ReactApp/layout'));
 
 export function App() {
   return (
     <>
-      <NxWelcome title="about-me" />
-      <div />
+      <TestComponent />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Layout />
+        </Suspense>
     </>
   );
 }

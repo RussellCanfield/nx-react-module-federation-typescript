@@ -2,9 +2,15 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "sourceMap": false,
-    "outDir": "../../dist/out-tsc",
+    "outDir": "./out-tsc",
     "allowJs": true,
-    "types": ["cypress", "node"]
+    "types": ["cypress", "node"],
+    "rootDir": "./src"
   },
-  "include": ["src/**/*.ts", "src/**/*.js"]
+  "include": ["src/**/*.ts", "src/**/*.js"],
+  "references": [
+    {
+      "path": "../../apps/react-app"
+    }
+  ]
 }
