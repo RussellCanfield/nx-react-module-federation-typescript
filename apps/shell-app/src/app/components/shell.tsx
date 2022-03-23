@@ -24,6 +24,7 @@ export default function Shell({ children }: Props) {
                     </Routes>
                 </Suspense>
             </BrowserRouter>
+            {children}
         </>
     )
 }
