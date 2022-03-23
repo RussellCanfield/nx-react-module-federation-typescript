@@ -21,11 +21,15 @@
     "composite": true,
     "declarationMap": true,
     "paths": {
-      "ReactApp/*": ["./apps/react-app/src/app/components/*"]
-    }
+      "AboutApp/*": ["./apps/about-me/src/app/components/*"],
+      "ShellApp/*": ["./apps/shell-app/src/app/components/*"],
+      "HomeApp/*": ["./apps/home/src/app/components/*"]
+    },
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ]
   },
-  "references": [
-    { "ReactApp": "./apps/react-app" }
-  ],
   "exclude": ["node_modules", "tmp"]
 }

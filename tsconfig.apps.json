@@ -11,10 +11,10 @@
       "path": "./apps/about-me-e2e"
     },
     {
-      "path": "./apps/react-app"
+      "path": "./apps/shell-app"
     },
     {
-      "path": "./apps/react-app-e2e"
+      "path": "./apps/shell-app-e2e"
     }
   ]
 }

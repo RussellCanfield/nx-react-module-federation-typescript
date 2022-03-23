@@ -1,6 +1,6 @@
 {
-  "root": "apps/about-me",
-  "sourceRoot": "apps/about-me/src",
+  "root": "apps/shell-app",
+  "sourceRoot": "apps/shell-app/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -9,24 +9,27 @@
       "defaultConfiguration": "development",
       "options": {
         "compiler": "babel",
-        "outputPath": "dist/apps/about-me",
-        "index": "apps/about-me/src/index.html",
+        "outputPath": "dist/apps/shell-app",
+        "index": "apps/shell-app/src/index.html",
         "baseHref": "/",
-        "main": "apps/about-me/src/index.ts",
-        "polyfills": "apps/about-me/src/polyfills.ts",
-        "tsConfig": "apps/about-me/tsconfig.json",
-        "assets": ["apps/about-me/src/favicon.ico", "apps/about-me/src/assets"],
-        "styles": ["apps/about-me/src/styles.css"],
+        "main": "apps/shell-app/src/index.ts",
+        "polyfills": "apps/shell-app/src/polyfills.ts",
+        "tsConfig": "apps/shell-app/tsconfig.json",
+        "assets": [
+          "apps/shell-app/src/favicon.ico",
+          "apps/shell-app/src/assets"
+        ],
+        "styles": ["apps/shell-app/src/styles.css"],
         "scripts": [],
-        "webpackConfig": "apps/about-me/webpack.config.js"
+        "webpackConfig": "apps/shell-app/webpack.config.js"
       },
       "configurations": {
         "development": {},
         "production": {
           "fileReplacements": [
             {
-              "replace": "apps/about-me/src/environments/environment.ts",
-              "with": "apps/about-me/src/environments/environment.prod.ts"
+              "replace": "apps/shell-app/src/environments/environment.ts",
+              "with": "apps/shell-app/src/environments/environment.prod.ts"
             }
           ],
           "optimization": true,
@@ -43,6 +46,7 @@
       "options": {
         "commands": [
           "cd apps/about-me && npm run dev",
+          "cd apps/home && npm run dev",
           "cd apps/shell-app && npm run dev"
         ]
       }
@@ -51,14 +55,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/about-me/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/shell-app/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/about-me"],
+      "outputs": ["coverage/apps/shell-app"],
       "options": {
-        "jestConfig": "apps/about-me/jest.config.js",
+        "jestConfig": "apps/shell-app/jest.config.js",
         "passWithNoTests": true
       }
     }

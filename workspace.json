@@ -3,7 +3,9 @@
   "projects": {
     "about-me": "apps/about-me",
     "about-me-e2e": "apps/about-me-e2e",
-    "react-app": "apps/react-app",
-    "react-app-e2e": "apps/react-app-e2e"
+    "home": "apps/home",
+    "home-e2e": "apps/home-e2e",
+    "shell-app": "apps/shell-app",
+    "shell-app-e2e": "apps/shell-app-e2e"
   }
 }

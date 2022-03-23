@@ -1,6 +1,6 @@
 const { ModuleFederationPlugin } = require('webpack').container;
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const deps = require('../../package.json').dependencies;
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
@@ -12,10 +12,10 @@ module.exports = (config, context) => {
     },
     devtool: 'source-map',
     devServer: {
-      port: 4201,
+      port: 4200,
       static: path.join(__dirname, 'dist'),
-      liveReload: false,
       historyApiFallback: true,
+      liveReload: false,
       hot: true,
       host: 'localhost',
       headers: {
@@ -48,16 +48,14 @@ module.exports = (config, context) => {
         {
           test: /\.css$/,
           use: [
+            { loader: 'style-loader' },
             {
-              loader: "@teamsupercell/typings-for-css-modules-loader",
-              options: {
-                verifyOnly: process.env.NODE_ENV === "production"
-              }
+              loader: 'css-loader',
+              options: { modules: true },
             },
             {
-              loader: "css-loader",
-              options: { modules: true }
-            }
+              loader: '@teamsupercell/typings-for-css-modules-loader',
+            },
           ]
         }
       ],
@@ -68,19 +66,21 @@ module.exports = (config, context) => {
     },
     plugins: [
       new ModuleFederationPlugin({
-        name: 'AboutApp',
-        filename: 'remoteEntry.js',
+        name: 'ShellApp',
+        filename: "remoteEntry.js",
         exposes: {
-          './aboutme': './src/app/components/aboutme',
+          './shell': './src/app/components/shell'
         },
         remotes: {
-          'ShellApp': 'ShellApp@http://localhost:4200/remoteEntry.js'
+          'ShellApp': 'ShellApp@http://localhost:4200/remoteEntry.js',
+          'AboutApp': 'AboutApp@http://localhost:4201/remoteEntry.js',
+          'HomeApp': 'HomeApp@http://localhost:4202/remoteEntry.js'
         },
         shared: {
-          react: {
-            singleton: true,
-            eager: true,
-            requiredVersion: deps.react,
+          react: { 
+            singleton: true, 
+            eager: true, 
+            requiredVersion: deps.react 
           },
           'react-dom': {
             singleton: true,
@@ -95,7 +95,7 @@ module.exports = (config, context) => {
         },
       }),
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, 'src/index.html'),
+        template: './src/index.html',
         //chunks: ['main']
       })
     ],

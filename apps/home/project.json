@@ -1,37 +1,37 @@
 {
-  "root": "apps/about-me",
-  "sourceRoot": "apps/about-me/src",
+  "root": "apps/home",
+  "sourceRoot": "apps/home/src",
   "projectType": "application",
   "targets": {
     "build": {
       "executor": "@nrwl/web:webpack",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
-        "outputPath": "dist/apps/about-me",
-        "index": "apps/about-me/src/index.html",
+        "outputPath": "dist/apps/home",
+        "index": "apps/home/src/index.html",
         "baseHref": "/",
-        "main": "apps/about-me/src/index.ts",
-        "polyfills": "apps/about-me/src/polyfills.ts",
-        "tsConfig": "apps/about-me/tsconfig.json",
-        "assets": ["apps/about-me/src/favicon.ico", "apps/about-me/src/assets"],
-        "styles": ["apps/about-me/src/styles.css"],
+        "main": "apps/home/src/main.tsx",
+        "polyfills": "apps/home/src/polyfills.ts",
+        "tsConfig": "apps/home/tsconfig.app.json",
+        "assets": ["apps/home/src/favicon.ico", "apps/home/src/assets"],
+        "styles": ["apps/home/src/styles.css"],
         "scripts": [],
-        "webpackConfig": "apps/about-me/webpack.config.js"
+        "webpackConfig": "apps/home/webpack.config"
       },
       "configurations": {
         "development": {},
         "production": {
           "fileReplacements": [
             {
-              "replace": "apps/about-me/src/environments/environment.ts",
-              "with": "apps/about-me/src/environments/environment.prod.ts"
+              "replace": "apps/home/src/environments/environment.ts",
+              "with": "apps/home/src/environments/environment.prod.ts"
             }
           ],
           "optimization": true,
           "outputHashing": "all",
-          "sourceMap": true,
+          "sourceMap": false,
           "namedChunks": false,
           "extractLicenses": true,
           "vendorChunk": false
@@ -42,7 +42,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "cd apps/about-me && npm run dev",
+          "cd apps/home && npm run dev",
           "cd apps/shell-app && npm run dev"
         ]
       }
@@ -51,17 +51,17 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/about-me/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/home/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/about-me"],
+      "outputs": ["coverage/apps/home"],
       "options": {
-        "jestConfig": "apps/about-me/jest.config.js",
+        "jestConfig": "apps/home/jest.config.js",
         "passWithNoTests": true
       }
     }
   },
-  "tags": ["scope:shared"]
+  "tags": []
 }

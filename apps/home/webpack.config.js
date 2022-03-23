@@ -12,7 +12,7 @@ module.exports = (config, context) => {
     },
     devtool: 'source-map',
     devServer: {
-      port: 4201,
+      port: 4202,
       static: path.join(__dirname, 'dist'),
       liveReload: false,
       historyApiFallback: true,
@@ -68,10 +68,10 @@ module.exports = (config, context) => {
     },
     plugins: [
       new ModuleFederationPlugin({
-        name: 'AboutApp',
+        name: 'HomeApp',
         filename: 'remoteEntry.js',
         exposes: {
-          './aboutme': './src/app/components/aboutme',
+          './home': './src/app/components/home',
         },
         remotes: {
           'ShellApp': 'ShellApp@http://localhost:4200/remoteEntry.js'

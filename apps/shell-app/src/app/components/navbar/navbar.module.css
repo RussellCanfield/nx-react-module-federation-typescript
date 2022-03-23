@@ -1,0 +1,21 @@
+.navbar {
+    background-color: #2b3445;
+    height: 4em;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    gap: 2em;
+    font-size: 1.2em;
+}
+
+a {
+    color: #fff;
+}
+
+.title {
+    font-size: 2em;
+}
+
+.navbar > span:first-child {
+    margin-left: 1em;
+}
