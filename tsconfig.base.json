@@ -22,7 +22,8 @@
     "declarationMap": true,
     "paths": {
       "AboutApp/*": ["./apps/about-me/src/app/components/*"],
-      "ShellApp/*": ["./apps/shell-app/src/app/components/*"],
+      "ShellApp/shell": ["./apps/shell-app/src/app/components/shell"],
+      "ShellApp/theme": ["./apps/shell-app/src/app/providers/theme"],
       "HomeApp/*": ["./apps/home/src/app/components/*"]
     },
     "plugins": [

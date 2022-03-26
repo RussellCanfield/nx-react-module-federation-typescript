@@ -8,13 +8,16 @@ module.exports = (config, context) => {
   return {
     mode: 'development',
     devtool: 'eval-source-map',
+    optimization: {
+      runtimeChunk: 'single'
+    },
     devServer: {
       port: 4200,
       static: {
         directory: path.join(__dirname, 'dist'),
       },
       historyApiFallback: true,
-      hot: 'only',
+      hot: true,
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
@@ -32,33 +35,12 @@ module.exports = (config, context) => {
           test: /\.(ts|js)x?$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader",
-            options: {
-              presets: [
-                "@babel/preset-env",
-                ["@babel/preset-react", {"runtime": "automatic"}],
-                "@babel/preset-typescript",
-              ],
-            },
+            loader: "babel-loader"
           },
         },
         {
-          test: /\.css$/,
-          exclude: /node_modules/,
-          use: [
-            { loader: 'style-loader' },
-            {
-              loader: 'css-loader',
-              options:
-              {
-                importLoaders: 1,
-                modules: true
-              }
-            },
-            {
-              loader: '@teamsupercell/typings-for-css-modules-loader',
-            },
-          ]
+          test: /\.css$/i,
+          use: ["style-loader", "css-loader"],
         }
       ],
     },
@@ -71,7 +53,8 @@ module.exports = (config, context) => {
         name: 'ShellApp',
         filename: "remoteEntry.js",
         exposes: {
-          './shell': './src/app/components/shell'
+          './shell': './src/app/components/shell',
+          './theme': './src/app/providers/theme'
         },
         remotes: {
           'ShellApp': 'ShellApp@http://localhost:4200/remoteEntry.js',

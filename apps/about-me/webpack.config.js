@@ -14,7 +14,7 @@ module.exports = (config, context) => {
         directory: path.join(__dirname, 'dist'),
       },
       historyApiFallback: true,
-      hot: 'only',
+      hot: true,
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",

@@ -1,15 +1,15 @@
-//import { useContext } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-//import UserContext from '../../providers/usercontext';
+import { ThemeMode, useThemeContext } from '../../providers/theme';
 
-import styles from './navbar.module.css';
+import './navbar.css';
 
 export default function Navbar() {
-    //const appContext = useContext(UserContext);
+    const { changeTheme, theme } = useThemeContext();
 
     return (
-        <div className={styles.navbar}>
-            <span className={styles.title}>Shell App</span>
+        <div className={`navbar ${theme == ThemeMode.Dark ? 'dark' : ''}`}>
+            <span className='title'>Shell App</span>
             <span>
                 <Link to='/home'>
                     Home
@@ -21,7 +21,10 @@ export default function Navbar() {
                 </Link>
             </span>
             <span>
-                <button type="button">Change Theme</button>
+                <button type="button" onClick={() => 
+                    changeTheme(theme == ThemeMode.Dark ? ThemeMode.Light : ThemeMode.Dark)}>
+                    Change Theme
+                </button>
             </span>
         </div>
     )
