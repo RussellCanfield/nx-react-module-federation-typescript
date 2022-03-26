@@ -45,9 +45,9 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "cd apps/about-me && npm run dev",
-          "cd apps/home && npm run dev",
-          "cd apps/shell-app && npm run dev"
+          "cd apps/shell-app && npm run serve",
+          "cd apps/about-me && npm run serve",
+          "cd apps/home && npm run serve"
         ]
       }
     },

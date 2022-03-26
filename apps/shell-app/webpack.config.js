@@ -6,18 +6,18 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = (config, context) => {
   return {
-    mode: process.env.NODE_ENV || 'development',
+    mode: 'development',
+    devtool: 'eval-source-map',
     optimization: {
-      minimize: false,
+      runtimeChunk: 'single'
     },
-    devtool: 'source-map',
     devServer: {
       port: 4200,
-      static: path.join(__dirname, 'dist'),
+      static: {
+        directory: path.join(__dirname, 'dist'),
+      },
       historyApiFallback: true,
-      liveReload: false,
       hot: true,
-      host: 'localhost',
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
@@ -35,41 +35,26 @@ module.exports = (config, context) => {
           test: /\.(ts|js)x?$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader",
-            options: {
-              presets: [
-                "@babel/preset-env",
-                ["@babel/preset-react", {"runtime": "automatic"}],
-                "@babel/preset-typescript",
-              ],
-            },
+            loader: "babel-loader"
           },
         },
         {
-          test: /\.css$/,
-          use: [
-            { loader: 'style-loader' },
-            {
-              loader: 'css-loader',
-              options: { modules: true },
-            },
-            {
-              loader: '@teamsupercell/typings-for-css-modules-loader',
-            },
-          ]
+          test: /\.css$/i,
+          use: ["style-loader", "css-loader"],
         }
       ],
     },
     output: {
       publicPath: 'auto',
-      clean: true
+      chunkFilename: '[id].[contenthash].js'
     },
     plugins: [
       new ModuleFederationPlugin({
         name: 'ShellApp',
         filename: "remoteEntry.js",
         exposes: {
-          './shell': './src/app/components/shell'
+          './shell': './src/app/components/shell',
+          './theme': './src/app/providers/theme'
         },
         remotes: {
           'ShellApp': 'ShellApp@http://localhost:4200/remoteEntry.js',
@@ -95,8 +80,7 @@ module.exports = (config, context) => {
         },
       }),
       new HtmlWebpackPlugin({
-        template: './src/index.html',
-        //chunks: ['main']
+        template: './src/index.html'
       })
     ],
   };
