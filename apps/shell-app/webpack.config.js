@@ -6,18 +6,15 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = (config, context) => {
   return {
-    mode: process.env.NODE_ENV || 'development',
-    optimization: {
-      minimize: false,
-    },
-    devtool: 'source-map',
+    mode: 'development',
+    devtool: 'eval-source-map',
     devServer: {
       port: 4200,
-      static: path.join(__dirname, 'dist'),
+      static: {
+        directory: path.join(__dirname, 'dist'),
+      },
       historyApiFallback: true,
-      liveReload: false,
-      hot: true,
-      host: 'localhost',
+      hot: 'only',
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
@@ -47,11 +44,16 @@ module.exports = (config, context) => {
         },
         {
           test: /\.css$/,
+          exclude: /node_modules/,
           use: [
             { loader: 'style-loader' },
             {
               loader: 'css-loader',
-              options: { modules: true },
+              options:
+              {
+                importLoaders: 1,
+                modules: true
+              }
             },
             {
               loader: '@teamsupercell/typings-for-css-modules-loader',
@@ -62,7 +64,7 @@ module.exports = (config, context) => {
     },
     output: {
       publicPath: 'auto',
-      clean: true
+      chunkFilename: '[id].[contenthash].js'
     },
     plugins: [
       new ModuleFederationPlugin({
@@ -95,8 +97,7 @@ module.exports = (config, context) => {
         },
       }),
       new HtmlWebpackPlugin({
-        template: './src/index.html',
-        //chunks: ['main']
+        template: './src/index.html'
       })
     ],
   };
