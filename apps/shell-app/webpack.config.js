@@ -8,9 +8,6 @@ module.exports = (config, context) => {
   return {
     mode: 'development',
     devtool: 'eval-source-map',
-    optimization: {
-      runtimeChunk: 'single'
-    },
     devServer: {
       port: 4200,
       static: {

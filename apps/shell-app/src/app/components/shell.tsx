@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './navbar/navbar';
 import ThemeProvider from '../providers/theme';
 
-import './shell.module.css';
+import './shell.css';
 
 const AboutMe = React.lazy(() => import('AboutApp/aboutme'));
 const Home = React.lazy(() => import('HomeApp/home'));

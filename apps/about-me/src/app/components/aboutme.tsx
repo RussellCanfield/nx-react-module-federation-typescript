@@ -1,9 +1,9 @@
-import { useThemeContext } from 'ShellApp/theme';
+//import { useThemeContext } from 'ShellApp/theme';
 
 export default function AboutMe() {
-    const { theme } = useThemeContext();
+    //const { theme } = useThemeContext();
 
-    console.log(theme);
+    //console.log(theme);
 
     return (
         <div>About me.</div>

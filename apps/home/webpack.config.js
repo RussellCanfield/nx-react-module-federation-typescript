@@ -32,34 +32,12 @@ module.exports = (config, context) => {
           test: /\.(ts|js)x?$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader",
-            options: {
-              presets: [
-                "@babel/preset-env",
-                ["@babel/preset-react", {"runtime": "automatic"}],
-                "@babel/preset-typescript",
-              ],
-            },
+            loader: "babel-loader"
           },
         },
         {
-          test: /\.css$/,
-          use: [
-            {
-              loader: "@teamsupercell/typings-for-css-modules-loader",
-              options: {
-                verifyOnly: process.env.NODE_ENV === "production"
-              }
-            },
-            {
-              loader: "css-loader",
-              options:
-              {
-                importLoaders: 1,
-                modules: true
-              }
-            }
-          ]
+          test: /\.css$/i,
+          use: ["style-loader", "css-loader"],
         }
       ],
     },
