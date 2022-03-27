@@ -1,9 +1,10 @@
-//import { useThemeContext } from 'ShellApp/theme';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { useThemeContext } from 'ShellApp/theme';
 
 export default function AboutMe() {
-    //const { theme } = useThemeContext();
+    const { theme } = useThemeContext();
 
-    //console.log(theme);
+    console.log(theme);
 
     return (
         <div>About me.</div>

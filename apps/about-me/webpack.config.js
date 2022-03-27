@@ -7,7 +7,6 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 module.exports = (config, context) => {
   return {
     mode: 'development',
-    devtool: 'eval-source-map',
     devServer: {
       port: 4201,
       static: {
@@ -55,23 +54,21 @@ module.exports = (config, context) => {
         remotes: {
           'ShellApp': 'ShellApp@http://localhost:4200/remoteEntry.js'
         },
-        shared: {
+        shared: [{
+          ...deps,
           react: {
             singleton: true,
-            eager: true,
             requiredVersion: deps.react,
           },
           'react-dom': {
             singleton: true,
-            eager: true,
             requiredVersion: deps['react-dom'],
           },
           'react-router-dom': {
             singleton: true,
-            eager: true,
             requiredVersion: deps['react-router-dom']
           }
-        },
+        }],
       }),
       new HtmlWebpackPlugin({
         template: './src/index.html'
